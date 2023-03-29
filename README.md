@@ -16,7 +16,7 @@ Numbering indicates order in which scripts must be run
 Runtimes (in parentheses at end) are estimated with parallelization where applicable on an HPC resource 
 
 1) data_process_syn-hefs.R: Processes raw forecast data from individual .csv files in data repository for 3 sites associated with Lake Mendocino (20 min)
-2) lamc_init-fit-model.R: Fits initial global parameters for synthetic forecast model, parameter arrays saved in 'fit' repository (10 min)
+2) lamc_init-fit-model.R: Fits initial global parameters for synthetic forecast model, parameter arrays saved in 'fit' repository (5 min)
 3) lamc_fit-model.R: Fits model parameters to each ensemble member to enable synthetic forecast generation, parameter arrays saved in 'fit' repository (12 hours)
 4) lamc_synthetic-gen_hc.R: Generates specified number of synthetic ensemble samples saved in 'out' repository (6 hrs per 100 samples)
 5) error_check-remove_hc.R: Synthetic ensemble post-processing script to remove/replace errant members (10 min per 100 samples)
