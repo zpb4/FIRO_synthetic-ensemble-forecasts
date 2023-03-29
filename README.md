@@ -15,7 +15,7 @@ The workflow below is configured to run from the file configuration when the Zen
 Numbering indicates order in which scripts must be run  
 Runtimes (in parentheses at end) are estimated with parallelization where applicable on an HPC resource 
 
-1) data_process.R: Processes raw forecast data from individual .csv files in data repository for 3 sites associated with Lake Mendocino (10 min)
+1) data_process_syn-hefs.R: Processes raw forecast data from individual .csv files in data repository for 3 sites associated with Lake Mendocino (10 min)
 2) lamc_init-fit-model.R: Fits initial global parameters for synthetic forecast model, parameter arrays saved in 'fit' repository (10 min)
 3) lamc_fit-model.R: Fits model parameters to each ensemble member to enable synthetic forecast generation, parameter arrays saved in 'fit' repository (12 hours)
 4) lamc_synthetic-gen_hc.R: Generates specified number of synthetic ensemble samples saved in 'out' repository (6 hrs per 100 samples)
@@ -38,6 +38,7 @@ Scripts to generate synthetic meteorological forecasts to support the syn-GEFS g
 2) temp_precip_model-fit.R: Fits synthetic forecast model to meteorological data from step 1 (1 hour)
 3) temp_precip_synthetic-gen.R: Generates specified number of syn-GEFS samples to be input into HEFS (FEWS) (1 hour per 100 samples)
 4) temp_precip_fews_process.R: Arranges syn-GEFS samples to be processed by external CNRFC HEFS architecture
+5) ens-process_syn-gefs.R: Processes syn-GEFS .csv files from CNRFC to be R compatible for analysis
 
 #### Plotting routines
 
