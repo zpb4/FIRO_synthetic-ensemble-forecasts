@@ -1,6 +1,5 @@
-#args <- commandArgs()
-#print(args)
-#m=as.numeric(args[6])
+#Initial global fitting of synthetic forecast model parameters
+setwd('d:/FIRO_synthetic-ensemble-forecasts')
 
 library(abind)
 library(fGarch)
@@ -27,9 +26,9 @@ ix2<-as.POSIXlt(ix)
 ix3<-seq(as.Date('1985-10-01'),as.Date('2010-09-30'),'day')
 hefs_idx<-which(ix3=='1985-10-15'):which(ix3=='2010-09-30')
 
-lamc_hefs<-readRDS('data/lamc_hefs_ens_forc_act-meteo_12z.rds')
-hopc_hefs<-readRDS('data/hopc_hefs_ens_forc_act-meteo_12z.rds')
-ukac_hefs<-readRDS('data/ukac_hefs_ens_forc_act-meteo_12z.rds')
+lamc_hefs<-readRDS('data/hefs_ens_forc_12z_lamc.rds')
+hopc_hefs<-readRDS('data/hefs_ens_forc_12z_hopc.rds')
+ukac_hefs<-readRDS('data/hefs_ens_forc_12z_ukac.rds')
 lamc_hefs<-lamc_hefs[,hefs_idx,]*1000;hopc_hefs<-hopc_hefs[,hefs_idx,]*1000;ukac_hefs<-ukac_hefs[,hefs_idx,]*1000
 
 o_hopc<-array(rep(obs$HOPC1),c(length(hefs_idx),ens_num))
@@ -51,7 +50,7 @@ for(i in 1:leads){
   }
 }
 
-saveRDS(loess_fit,'data/fit/loess_fit_loessv3-1_hopper_12z.rds')
+saveRDS(loess_fit,'fit/loess_fit.rds')
 
 for(i in 1:12){
   seas<-which(ix2$mon==(i-1))
@@ -69,7 +68,7 @@ for(i in 1:12){
   }
 }
 
-saveRDS(loess_mat,'data/fit/loess_mat_loessv3-1_hopper_12z.rds')
+saveRDS(loess_mat,'fit/loess_mat.rds')
 
 max_val<-array(NA,c(12,leads*3))
 
@@ -80,7 +79,7 @@ for(i in 1:12){
   max_val[i,29:42]<-apply(apply(ukac_hefs,c(2,3),max)[seas,],2,function(x){max(x,na.rm=T)})
 }
 
-saveRDS(max_val,'data/fit/max_val_loessv3-1_hopper_12z.rds')
+saveRDS(max_val,'fit/max_val.rds')
 
 for(e in 1:ens_num){
 #1a. Raw Resid Matrix
@@ -97,22 +96,20 @@ for(i in 1:12){
   }
   rresids[[i]]<-rresid_mat
 }
-saveRDS(rresids,paste('data/fit/rresids_loessv3-1_hopper_ens_',e,'_12z.rds',sep=''))
+saveRDS(rresids,paste('fit/rresids_ens_',e,'.rds',sep=''))
 }
 
 conc_resids<-vector('list',12)
 
 for(i in 1:12){
-  res_mat<-readRDS('data/fit/rresids_loessv3-1_hopper_ens_1_12z.rds')[[i]]
+  res_mat<-readRDS('fit/rresids_ens_1.rds')[[i]]
   for(e in 2:ens_num){
-    rresids<-readRDS(paste('data/fit/rresids_loessv3-1_hopper_ens_',e,'_12z.rds',sep=''))
+    rresids<-readRDS(paste('fit/rresids_ens_',e,'.rds',sep=''))
     res_add<-rresids[[i]]
     res_mat<-abind(res_mat,res_add,along=3)
   }
   conc_resids[[i]]<-res_mat
 }
-
-###############
 
 sd_arr<-array(NA,c(12,leads*3))
 
@@ -158,8 +155,9 @@ for(i in 1:12){
   }
 }
 
-saveRDS(norm_fit,'data/fit/norm_fit_loessv3-1_hopper_12z.rds')
-saveRDS(sd_arr,'data/fit/sd_arr_loessv3-1_hopper_12z.rds')
+saveRDS(norm_fit,'fit/norm_fit.rds')
+saveRDS(sd_arr,'fit/sd_arr.rds')
 
 print(paste('end',Sys.time()))
+
 ###########################################END################################
