@@ -12,6 +12,7 @@ Releases of this software are stored permanently here:
 ### Installing
 Requires following R packages:
 * BigVAR
+* fGarch
 ### Executing program
 The workflow below is configured to run from the file configuration when the Zenodo repository is unzipped and stored in a repository named 'data'
 #### syn-HEFS synthetic forecast generation - hindcast period
@@ -46,8 +47,20 @@ Scripts to generate synthetic meteorological forecasts to support the syn-GEFS g
 #### Plotting routines
 
 - main_plot.R: Main plotting script for manuscript figures
+- plot_supp-inf.R: Plotting script for supporting information figures
 - calc_ensemble_stats_top-10.R: Calculates cumulative ensemble statistics for top-10 inflow events
 - calc_ensemble_stats_top-100.R: Calculates cumulative ensemble statistics for top-10 inflow events
+- forecast_verification_functions.R: Helper functions for ensemble forecast verification and plotting
+- EFO-results_process.R: Process and plot EFO results for SI
+- EFO-results_process_pre-hc.R: Process and plot EFO pre-hindcast results
+- plot_cumul_ensembles_hopper.R: Processing and plotting functions for cumulative ensemble forecast plots
+- plot_ensembles_hopper.R: Processing and plotting function for ensemble forecast plots
+- plot_rank_hist.R: Processing and plotting function for rank histogram verification
+- plot_cumul_rank_hist.R: Processing and plotting function for cumulative rank histogram plot
+- plot_spread-skill_hopper.R: Processing and plotting function for binned spread error diagrams
+- plot_ecrps_hopper.R: Processing and plotting function for ensemble CRPS (eCRPS) verification plots
+- plot_top-10-events_hopper.R: Processing and plotting script for 'Top-10' cumulative ensemble statistics
+- plot-top-100-events_hopper.R: Processing and plotting script for 'Top-100' cumulative ensemble statistics
 
 #### Miscellaneous
 
