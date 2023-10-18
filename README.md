@@ -5,7 +5,10 @@ Submitted 15 March 2023
 The code below supports the data processing, model fitting, generation, and plotting routines to support the aforementioned manuscript.
 ## Getting started
 ### Dependencies
-Raw data to support this code in in the following Zenodo repository: https://doi.org/10.5281/zenodo.7688974
+Raw data to support this code are stored here: 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7688974.svg)](https://doi.org/10.5281/zenodo.7688974)  
+Releases of this software are stored permanently here:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10019063.svg)](https://doi.org/10.5281/zenodo.10019063)
 ### Installing
 Requires following R packages:
 * BigVAR
