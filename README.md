@@ -9,6 +9,11 @@ Raw data to support this code are stored here:
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7688974.svg)](https://doi.org/10.5281/zenodo.7688974)  
 Releases of this software are stored permanently here:
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10019063.svg)](https://doi.org/10.5281/zenodo.10019063)
+
+Developmental versions of synthetic forecast algorithm are located in the following public GitHub repos:   
+https://github.com/zpb4/Synthetic-Forecast-v1-FIRO-DISES   
+https://github.com/zpb4/Synthetic-Forecast-v2-FIRO-DISES   
+We recommend that interested parties consult these repos for more generalizable implementations of this modeling approach   
 ### Installing
 Requires following R packages:
 * BigVAR
